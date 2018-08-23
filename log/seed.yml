@@ -1,0 +1,5 @@
+in:
+    type: file
+    path_prefix: "./nikkei225.csv"
+out:
+    type: stdout

@@ -1,0 +1,25 @@
+in:
+  type: file
+  path_prefix: ./nikkei225.csv
+  parser:
+    charset: ISO-8859-2
+    newline: LF
+    type: csv
+    delimiter: ','
+    quote: '"'
+    escape: '"'
+    trim_if_not_quoted: false
+    skip_header_lines: 1
+    allow_extra_columns: false
+    allow_optional_columns: false
+    columns:
+    - {name: DATE, type: timestamp, format: '%Y-%m-%d'}
+    - {name: NIKKEI225, type: double}
+    - {name: DJIA, type: double}
+    - {name: DEXJPUS, type: double}
+out:
+  type: elasticsearch
+  nodes:
+  - {host : elasticsearch, port: 9200}
+  index: nikkei225-test
+  index_type: nikkei_schema

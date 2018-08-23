@@ -1,0 +1,13 @@
+{
+  "template": "nikkei225*",
+  "mappings": {
+    "nikkei_schema":{
+      "properties": {
+          "NIKKEI225": { "type": "double" },
+          "DATE": {"format" : "YYYY-MM-dd", "type": "date" },
+          "DJIA": { "type": "double" },
+          "DEXJPUS": { "type": "double" }
+      }
+    }
+  }
+}

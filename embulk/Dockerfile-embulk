@@ -30,7 +30,7 @@ RUN curl -o /usr/local/bin/embulk --create-dirs -L "http://dl.embulk.org/embulk-
 #    adduser --shell /sbin/nologin --disabled-password --gecos "" digdag
 
 #Get Embulk Plugins
-RUN  embulk gem install embulk-output-elasticsearch
+RUN  embulk gem install embulk-output-elasticsearch embulk-filter-insert embulk-filter-column
 
 WORKDIR /root
 

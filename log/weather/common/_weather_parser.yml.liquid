@@ -1,0 +1,40 @@
+in:
+  type: file
+  path_prefix: {{ fileName_prefix }}.csv
+  parser:
+    charset: MS932
+    newline: CRLF
+    type: csv
+    delimiter: ','
+    quote: '"'
+    escape: '"'
+    trim_if_not_quoted: false
+    skip_header_lines: 6
+    allow_extra_columns: false
+    allow_optional_columns: false
+    columns:
+    - {name: 'DATE', type: timestamp, format: '%Y/%m/%d'}
+    - {name: '平均気温', type: double}
+    - {name: '平均気温(品質情報)', type: double}
+    - {name: '平均気温(均質番号)', type: double}
+    - {name: '最高気温', type: double}
+    - {name: '最高気温(品質情報)', type: double}
+    - {name: '最高気温(均質番号)', type: double}
+    - {name: '最低気温', type: double}
+    - {name: '最低気温(品質情報)', type: double}
+    - {name: '最低気温(均質番号)', type: double}
+filters:
+  - type: column
+    drop_columns:
+      - {name: '平均気温(品質情報)'}
+      - {name: '平均気温(均質番号)'}
+      - {name: '最高気温(品質情報)'}
+      - {name: '最高気温(均質番号)'}
+      - {name: '最低気温(品質情報)'}
+      - {name: '最低気温(均質番号)'}
+out:
+  type: elasticsearch
+  nodes:
+  - {host : elasticsearch, port: 9200}
+  index: weather_temp_{{ fileName_prefix }}
+  index_type: weather_schema

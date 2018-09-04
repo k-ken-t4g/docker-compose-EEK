@@ -28,17 +28,15 @@ services:
       dockerfile: Dockerfile-embulk
     tty: true
 
-#  fluentd:
-#    build:
-#       context: ./fluentd
-#       dockerfile: Dockerfile-fluentd
-#    volumes:
-#      - ./log:/fluentd/log
-#      - ./fluentd/conf:/fluentd/etc
-#    environment:
-#      - FLUENTD_CONF=fluent.conf
-#    links:
-#      - "elasticsearch"
-#    ports:
-#      - "24224:24224"
-#      - "24224:24224/udp"
+  fluentd:
+    build:
+       context: ./fluentd
+       dockerfile: Dockerfile-fluentd
+    volumes:
+      - ./log:/fluentd/log
+      - ./fluentd/conf:/fluentd/etc
+    environment:
+      - FLUENTD_CONF=fluent.conf
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
